@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class RollerSkatesPair {
@@ -15,11 +16,20 @@ public class RollerSkatesPair {
     private String plates;
     private String wheels;
 
-    public long getId() {
+    public RollerSkatesPair() {}
+
+    public RollerSkatesPair(String name, String brand, String plates, String wheels) {
+        this.name = name;
+        this.brand = brand;
+        this.plates = plates;
+        this.wheels = wheels;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,4 +65,20 @@ public class RollerSkatesPair {
         this.wheels = wheels;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RollerSkatesPair that = (RollerSkatesPair) o;
+        return Objects.equals(id, that.id) &&
+               Objects.equals(name, that.name) &&
+               Objects.equals(brand, that.brand) &&
+               Objects.equals(plates, that.plates) &&
+               Objects.equals(wheels, that.wheels);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, brand, plates, wheels);
+    }
 }
