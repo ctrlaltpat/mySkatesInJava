@@ -1,6 +1,6 @@
 package com.ctrlaltpat.MySkates.controller;
 
-import com.ctrlaltpat.MySkates.model.RollerSkates;
+import com.ctrlaltpat.MySkates.model.RollerSkatesPair;
 import com.ctrlaltpat.MySkates.service.RollerSkatesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
 @RequestMapping("/api/v1/skates")
 public class RollerSkatesController {
@@ -25,27 +24,27 @@ public class RollerSkatesController {
     private RollerSkatesService rollerSkatesService;
 
     @GetMapping
-    public List<RollerSkates> getAllRollerSkatess() {
+    public List<RollerSkatesPair> getAllRollerSkatess() {
         return rollerSkatesService.getAllRollerSkates();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RollerSkates> getRollerSkatesById(@PathVariable Long id) {
-        Optional<RollerSkates> rollerSkates = rollerSkatesService.getRollerSkatesById(id);
-        return rollerSkates.map(ResponseEntity::ok)
+    public ResponseEntity<RollerSkatesPair> getRollerSkatesById(@PathVariable Long id) {
+        Optional<RollerSkatesPair> pair = rollerSkatesService.getRollerSkatesById(id);
+        return pair.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public RollerSkates createRollerSkates(@RequestBody RollerSkates rollerSkates) {
-        return rollerSkatesService.createRollerSkates(rollerSkates);
+    public RollerSkatesPair createRollerSkates(@RequestBody RollerSkatesPair pair) {
+        return rollerSkatesService.createRollerSkates(pair);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RollerSkates> updateRollerSkates(@PathVariable Long id,
-            @RequestBody RollerSkates rollerSkatesDetails) {
-        RollerSkates updatedRollerSkates = rollerSkatesService.updateRollerSkates(id, rollerSkatesDetails);
-        return ResponseEntity.ok(updatedRollerSkates);
+    public ResponseEntity<RollerSkatesPair> updateRollerSkates(@PathVariable Long id,
+            @RequestBody RollerSkatesPair rollerSkatesDetails) {
+        RollerSkatesPair updatedPair = rollerSkatesService.updateRollerSkates(id, rollerSkatesDetails);
+        return ResponseEntity.ok(updatedPair);
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,6 @@
 package com.ctrlaltpat.MySkates.service;
 
-import com.ctrlaltpat.MySkates.model.RollerSkates;
+import com.ctrlaltpat.MySkates.model.RollerSkatesPair;
 import com.ctrlaltpat.MySkates.repository.RollerSkatesRepository;
 import com.ctrlaltpat.MySkates.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,38 +11,38 @@ import java.util.Optional;
 
 @Service
 public class RollerSkatesService {
-    
+
     @Autowired
     private RollerSkatesRepository rollerSkatesRepository;
 
-    public List<RollerSkates> getAllRollerSkates() {
+    public List<RollerSkatesPair> getAllRollerSkates() {
         return rollerSkatesRepository.findAll();
     }
 
-    public Optional<RollerSkates> getRollerSkatesById(Long id) {
+    public Optional<RollerSkatesPair> getRollerSkatesById(Long id) {
         return rollerSkatesRepository.findById(id);
     }
 
-    public RollerSkates createRollerSkates(RollerSkates rollerSkates) {
-        return rollerSkatesRepository.save(rollerSkates);
+    public RollerSkatesPair createRollerSkates(RollerSkatesPair rollerSkatesPair) {
+        return rollerSkatesRepository.save(rollerSkatesPair);
     }
 
-    public RollerSkates updateRollerSkates(Long id, RollerSkates rollerSkatesDetails) {
-        RollerSkates rollerSkates = rollerSkatesRepository.findById(id)
+    public RollerSkatesPair updateRollerSkates(Long id, RollerSkatesPair rollerSkatesDetails) {
+        RollerSkatesPair pair = rollerSkatesRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Roller Skates not found"));
 
-        rollerSkates.setName(rollerSkatesDetails.getName());
-        rollerSkates.setBrand(rollerSkatesDetails.getBrand());
-        rollerSkates.setPlates(rollerSkatesDetails.getPlates());
-        rollerSkates.setWheels(rollerSkatesDetails.getWheels());
+        pair.setName(rollerSkatesDetails.getName());
+        pair.setBrand(rollerSkatesDetails.getBrand());
+        pair.setPlates(rollerSkatesDetails.getPlates());
+        pair.setWheels(rollerSkatesDetails.getWheels());
 
-        return rollerSkatesRepository.save(rollerSkates);
+        return rollerSkatesRepository.save(pair);
     }
 
     public void deleteRollerSkates(Long id) {
-        RollerSkates rollerSkates = rollerSkatesRepository.findById(id)
+        RollerSkatesPair pair = rollerSkatesRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Roller Skates not found"));
 
-        rollerSkatesRepository.delete(rollerSkates);
+        rollerSkatesRepository.delete(pair);
     }
 }
