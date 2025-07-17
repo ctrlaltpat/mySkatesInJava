@@ -16,7 +16,8 @@ public class RollerSkatesPair {
     private String plates;
     private String wheels;
 
-    public RollerSkatesPair() {}
+    public RollerSkatesPair() {
+    }
 
     public RollerSkatesPair(String name, String brand, String plates, String wheels) {
         this.name = name;
@@ -67,14 +68,16 @@ public class RollerSkatesPair {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         RollerSkatesPair that = (RollerSkatesPair) o;
         return Objects.equals(id, that.id) &&
-               Objects.equals(name, that.name) &&
-               Objects.equals(brand, that.brand) &&
-               Objects.equals(plates, that.plates) &&
-               Objects.equals(wheels, that.wheels);
+                Objects.equals(name, that.name) &&
+                Objects.equals(brand, that.brand) &&
+                Objects.equals(plates, that.plates) &&
+                Objects.equals(wheels, that.wheels);
     }
 
     @Override
