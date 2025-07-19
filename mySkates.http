@@ -1,0 +1,34 @@
+@MySkates_HostAddress = http://localhost:8080
+
+### GET ALL
+GET {{MySkates_HostAddress}}/api/v1/skates
+Accept: application/json
+
+### GET BY ID
+GET {{MySkates_HostAddress}}/api/v1/skates/1
+Accept: application/json
+
+### POST
+POST {{MySkates_HostAddress}}/api/v1/skates
+Content-Type: application/json
+
+{
+    "name": "Classica",
+    "brand": "Edea",
+    "plates": "SureGrip Avanti Magnesium",
+    "wheels": "SureGrip Fame (black)"
+}
+
+### PUT
+PUT {{MySkates_HostAddress}}/api/v1/skates/1
+Content-Type: application/json
+
+{
+    "name": "3200",
+    "brand": "Riedell",
+    "plates": "Arius",
+    "wheels": "Vanathanes"
+}
+
+### DELETE
+DELETE  {{MySkates_HostAddress}}/api/v1/skates/1
